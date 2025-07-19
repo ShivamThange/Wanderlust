@@ -1,0 +1,700 @@
+/* Import Google Font */
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap");
+
+/* Variables for Reusability and Easy Updates */
+:root {
+  --primary-color: #ff385c;
+  --primary-hover-color: #e61e4d;
+  --text-color: #222;
+  --light-text-color: #555;
+  --background-color: #fefefe;
+  --light-background-color: #f7f7f7;
+  --border-color: #eaeaea;
+  --card-border-radius: 20px;
+  --button-border-radius: 30px;
+  --box-shadow-light: 0 1px 4px rgba(0, 0, 0, 0.04);
+  --box-shadow-medium: 0 2px 6px rgba(0, 0, 0, 0.1);
+  --box-shadow-strong: 0 8px 20px rgba(0, 0, 0, 0.1);
+  --box-shadow-map: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --transition-speed: 0.2s;
+}
+
+/* Base Typography & Layout */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Plus Jakarta Sans", sans-serif; /* !important removed if not strictly needed, generally avoid */
+  background-color: var(--background-color);
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+.container {
+  flex: 1;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color var(--transition-speed) ease;
+}
+
+a:hover {
+  color: var(--primary-color);
+}
+
+/* Navbar */
+.navbar {
+  height: 7rem;
+  background-color: #ffffff; /* Explicit white, can be a variable if other whites are used */
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: var(--box-shadow-light);
+  transition: all var(--transition-speed) ease;
+}
+
+.navbar-brand {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: var(--primary-color) !important;
+}
+
+.fa-compass {
+  color: var(--primary-color);
+  font-size: 2.5rem;
+}
+
+.nav-link {
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0 0.6rem;
+  transition: all var(--transition-speed) ease;
+  color: var(--text-color) !important;
+}
+
+.nav-link:hover {
+  color: var(--primary-color) !important;
+}
+
+/* Search Bar */
+.navbar-nav.search-bar {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40%;
+  min-width: 280px;
+}
+
+.navbar .form-control {
+  border-radius: var(--button-border-radius);
+  padding: 0.6rem 1.2rem;
+  width: 100%;
+  box-shadow: var(--box-shadow-medium);
+  border: 1px solid #ddd; /* Specific for form-control, could be a variable if used elsewhere */
+  transition: all var(--transition-speed) ease-in-out;
+}
+
+.navbar .form-control:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 90, 95, 0.2); /* Specific shadow for focus */
+  border-color: var(--primary-color);
+}
+
+.navbar .btn-outline-success {
+  border-radius: var(--button-border-radius);
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+  padding: 0.5rem 1rem;
+  transition: all var(--transition-speed) ease;
+}
+
+.navbar .btn-outline-success:hover {
+  background-color: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+/* Cards */
+.card {
+  border: none;
+  border-radius: var(--card-border-radius);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--box-shadow-strong);
+}
+
+.card-img-top {
+  height: 250px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: var(--card-border-radius);
+  margin: 0;
+  transition: transform 0.3s ease;
+}
+
+.card-index:hover .card-img-top {
+  transform: scale(1.02);
+}
+
+.card-body {
+  padding: 0;
+}
+
+.card-text p {
+  font-weight: 400;
+}
+
+/* Image Overlay on Hover */
+.card-img-overlay {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0));
+  color: white;
+}
+
+.card-index:hover .card-img-overlay {
+  opacity: 1;
+}
+
+.card-index {
+  border: none !important;
+  cursor: pointer;
+  transition: transform var(--transition-speed) ease;
+  background-color: transparent;
+  padding: 1.12%;
+}
+
+/* Buttons */
+/* Grouping common button styles for brevity */
+.btn,
+.add-btn,
+.edit-btn,
+.dlt-btn {
+  background-color: var(--primary-color) !important;
+  border: none !important;
+  border-radius: var(--button-border-radius) !important;
+  color: #fff !important;
+  padding: 0.5rem 1.2rem;
+  font-weight: 500;
+  transition: all var(--transition-speed) ease-in-out;
+}
+
+.btn:hover,
+.add-btn:hover,
+.edit-btn:hover,
+.dlt-btn:hover {
+  background-color: var(--primary-hover-color) !important;
+}
+
+/* Footer */
+.f-info {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  background-color: var(--light-background-color);
+  padding: 2rem 0;
+  font-size: 0.9rem;
+  border-top: 1px solid var(--border-color);
+  text-align: center;
+}
+
+.f-info-links a {
+  text-decoration: none;
+  color: var(--light-text-color) !important;
+  margin: 0 0.5rem;
+  transition: color var(--transition-speed) ease;
+}
+
+.f-info-links a:hover {
+  color: var(--text-color);
+  text-decoration: underline;
+}
+
+.f-info-socials,
+.f-info-links,
+.f-company {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.f-info-socials i {
+  font-size: 1.5rem;
+  margin: 0.2rem;
+}
+
+/* Show Page */
+.show-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1rem;
+}
+
+.show-card {
+  width: 100%;
+  max-width: 768px;
+  border-radius: 16px; /* Specific radius, consider making variable if reused */
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1); /* Specific shadow, consider variable */
+  overflow: hidden;
+  background: white;
+  margin-bottom: 2rem;
+}
+
+.show-img {
+  width: 100%;
+  height: 30vh;
+  object-fit: cover;
+}
+
+/* Map */
+.map-container {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background-color: #fff;
+  border-radius: 1rem;
+  box-shadow: var(--box-shadow-map);
+
+ 
+  width: 100%; 
+  max-width: 1200px; 
+  margin-left: auto; 
+  margin-right: auto;
+  
+}
+
+.map-container h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  font-family: "Helvetica Neue", sans-serif; /* Specific font for h3 */
+  color: var(--text-color);
+}
+
+#map {
+  height: 400px;
+  width: 100%;
+  border-radius: 1rem;
+  box-shadow: var(--box-shadow-medium);
+}
+
+/* Grid Row Layout */
+.rows {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Utility */
+.shadow-hover {
+  transition: all 0.3s ease-in-out;
+}
+
+.shadow-hover:hover {
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1); /* Specific shadow, consider variable */
+}
+
+/* Review Form Styling */
+#comment {
+  resize: vertical;
+  min-height: 120px;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  font-size: 1rem;
+  border: 1px solid #ced4da; /* Specific border color */
+}
+
+.form-label {
+  font-weight: 600;
+  color: #333; /* Specific color */
+}
+
+/* Post Button */
+.btn-outline-dark {
+  border-radius: 2rem; /* Specific radius */
+  padding: 0.5rem 1.5rem;
+  font-weight: 500;
+  transition: all var(--transition-speed) ease-in-out;
+}
+
+.btn-outline-dark:hover {
+  background-color: var(--text-color);
+  color: #fff;
+}
+
+/* Reviews Container */
+.reviews-section {
+  margin-top: 2rem;
+  padding: 0 1rem;
+}
+
+.reviews-section h4 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+/* Individual Review Card */
+.reviews-section .card {
+  /* Added .reviews-section for better specificity if needed, or remove if .card is truly global */
+  border: none;
+  border-radius: 1rem; /* Specific radius */
+  background-color: #fafafa; /* Specific background color */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Specific shadow */
+}
+
+.reviews-section .card-title {
+  font-weight: 600;
+  color: #444; /* Specific color */
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.reviews-section .card-text {
+  font-size: 1rem;
+  color: var(--light-text-color);
+}
+
+/* Delete Button */
+.reviews-section .card .btn-dark {
+  border-radius: 1rem; /* Specific radius */
+  font-size: 0.9rem;
+  padding: 0.4rem 1.2rem;
+}
+
+/* Starability Stars (if used) */
+.starability-result::before {
+  font-size: 1.2rem;
+  color: #f5b301; /* Specific color */
+}
+
+.filters {
+  display: flex;
+  gap: 1.2rem;
+  overflow-x: auto;
+  padding: 1rem 1.5rem;
+  background-color: #fff;
+  border-bottom: 1px solid var(--border-color);
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.filters::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+.filter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.9rem;
+  color: #717171; /* Specific color */
+  cursor: pointer;
+  padding: 0.5rem 0.7rem;
+  border-radius: 0.8rem; /* Specific radius */
+  transition: all var(--transition-speed) ease-in-out;
+  min-width: 4.5rem;
+}
+
+.filter:hover {
+  background-color: var(--light-background-color);
+  color: var(--text-color);
+}
+
+.filter.active {
+  border-bottom: 2px solid var(--primary-color);
+  color: var(--text-color);
+  font-weight: 500;
+}
+
+/* Toggle Button Wrapper */
+.tax-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  border: 1px solid #ddd; /* Specific border color */
+  border-radius: 999px;
+  padding: 0.5rem 1.2rem;
+  margin: 1rem auto;
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05); /* Specific shadow */
+  transition: box-shadow var(--transition-speed);
+}
+
+.tax-toggle:hover {
+  box-shadow: var(--box-shadow-map);
+}
+
+/* Hide native input */
+.tax-toggle input {
+    position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Slider base */
+.slider {
+  width: 40px;
+  height: 20px;
+  background-color: #ccc; /* Specific color */
+  border-radius: 999px;
+  position: relative;
+  transition: background-color 0.3s;
+  pointer-events: none;
+}
+
+/* Slider circle */
+.slider::before {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background-color: white;
+  border-radius: 50%;
+  top: 2px;
+  left: 2px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); /* Specific shadow */
+  transition: transform 0.3s;
+}
+
+/* Checked state */
+.tax-toggle input:checked + .slider {
+  background-color: var(--text-color);
+}
+
+.tax-toggle input:checked + .slider::before {
+  transform: translateX(20px);
+}
+
+.show-taxes-mobile {
+  display: none;
+}
+
+.show-taxes {
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+/* --- Responsive Design --- */
+
+/* Tablet devices (medium screens) */
+@media (max-width: 768px) {
+  .navbar-nav.search-bar {
+    position: static;
+    transform: none;
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  .navbar .form-control {
+    border-radius: 20px; /* Specific radius for smaller screens */
+  }
+
+  .navbar .btn {
+    margin-top: 0.5rem;
+  }
+
+  .card-img-top {
+    height: 200px;
+  }
+
+  .f-info {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .filter {
+    font-size: 0.85rem;
+    min-width: 3.5rem;
+    padding: 0.3rem 0.5rem;
+  }
+
+  .map-container {
+    padding: 0 1.5rem;
+  }
+
+  #map {
+    height: 400px;
+  }
+
+  /* Specific styles for show page on tablets */
+  .col-8.offset-3,
+  .col-6.offset-3 {
+    width: 90% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .card.mb-2.ms-2.col-5 {
+    width: 90% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .show-img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+/* Mobile devices (small screens) */
+@media (max-width: 576px) {
+  .filters {
+    justify-content: flex-start;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 0.5rem 1rem;
+    padding-bottom: 4rem; /* Added padding to prevent fixed button from obscuring filters */
+  }
+
+  .filter {
+    flex: 0 0 auto;
+    margin-right: 0.5rem;
+    font-size: 0.8rem;
+  }
+
+  /* Shadow effect for scroll indication */
+  .filters::before,
+  .filters::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 2rem;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .filters::before {
+    left: 0;
+    background: linear-gradient(to right, white, transparent);
+  }
+
+  .filters::after {
+    right: 0;
+    background: linear-gradient(to left, white, transparent);
+  }
+
+  .show-taxes {
+    /* This rule is overridden by show-taxes-mobile below, effectively making it display: none */
+    position: fixed;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: bold;
+    border: none;
+    padding: 0.6rem 1.5rem;
+    border-radius: 999px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    display: none; /* This hides it */
+  }
+
+  .show-taxes-mobile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: bold;
+    border: none;
+    padding: 0.6rem 1.4rem;
+    border-radius: 999px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: transform var(--transition-speed) ease;
+  }
+
+  .show-taxes-mobile:active {
+    transform: translateX(-50%) scale(0.98);
+  }
+
+  .show-taxes-mobile input[type="checkbox"] {
+    display: none;
+  }
+
+  .tax-toggle {
+    display: none; /* Hide desktop toggle on mobile */
+  }
+
+  /* Optional: Change appearance when checked */
+  /* This rule will not work as written because input[type="checkbox"] is hidden.
+     You'd need JavaScript to change the text content based on checked state. */
+  #showTaxesToggle:checked + span {
+    content: "Hide Taxes"; /* 'content' only works for pseudo-elements */
+    font-weight: bold;
+    color: #fff;
+  }
+
+  /* Media queries for show page on mobile */
+  .col-8.offset-3,
+  .col-6.offset-3,
+  .col-5,
+  .col-8 {
+    width: 100% !important;
+    margin-left: 0 !important;
+    padding: 0 1rem;
+  }
+
+  .show-img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+
+  .edit-btn,
+  .dlt-btn,
+  .btn-outline-dark {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+
+  .reviews-section {
+    padding: 0 1rem;
+  }
+
+  .card.mb-2.ms-2.col-5 {
+    width: 100% !important;
+    margin-left: 0 !important;
+  }
+
+  .map-container {
+    padding: 0 1rem;
+    width: 100%; /* Ensure full width on mobile */
+  }
+
+  #map {
+    height: 300px;
+    width: 100%; /* Ensure full width on mobile */
+  }
+}

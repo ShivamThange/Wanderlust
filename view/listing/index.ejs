@@ -1,0 +1,142 @@
+<%- layout("/layouts/boilerplate.ejs") %>
+
+<body>
+  <div class="filters">
+    <div class="filter">
+      <div class="icon">
+        <i class="fa-solid fa-fire-flame-curved"></i>
+      </div>
+      <p>Trending</p>
+    </div>
+
+    <div class="filter">
+      <div class="icon">
+        <i class="fa-solid fa-bed"></i>
+      </div>
+      <p>Rooms</p>
+    </div>
+
+    <div class="filter">
+      <div class="icon">
+        <i class="fa-solid fa-tree-city"></i>
+      </div>
+      <p>Iconic Cities</p>
+    </div>
+
+    <div class="filter">
+      <div class="icon">
+        <i class="fa-solid fa-mountain"></i>
+      </div>
+      <p>Mountains</p>
+    </div>
+
+    <div class="filter">
+      <div class="icon">
+        <i class="fa-solid fa-building-columns"></i>
+      </div>
+      <p>Castles</p>
+    </div>
+
+    <div class="filter">
+      <div class="icon">
+        <i class="fa-solid fa-water-ladder"></i>
+      </div>
+      <p>Amazing Pools</p>
+    </div>
+
+    <div class="filter">
+      <div class="icon">
+        <i class="fa-solid fa-tractor"></i>
+      </div>
+      <p>Farms</p>
+    </div>
+
+    <div class="filter">
+      <div class="icon">
+        <i class="fa-solid fa-snowman"></i>
+      </div>
+      <p>Arctic</p>
+    </div>
+
+    <div class="filter">
+      <div class="icon">
+        <i class="fa-solid fa-igloo"></i>
+      </div>
+      <p>Dome</p>
+    </div>
+
+    <div class="filter">
+      <div class="icon">
+        <i class="fa-solid fa-sailboat"></i>
+      </div>
+      <p>Dome</p>
+    </div>
+
+    <div class="tax-toggle">
+      <label class="tax-label" for="checkNativeSwitch">
+        Show total after taxes
+      </label>
+      <input type="checkbox" id="checkNativeSwitch" />
+      <span class="slider"></span>
+    </div>
+  </div>
+
+  <label for="showTaxesToggle" class="show-taxes-mobile">
+    <input type="checkbox" id="checkNativeSwitch" />
+    <span id="showTaxesLabel">Show Taxes</span>
+  </label>
+
+  <div class="container mt-4">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+      <% for(let listing of allListings) { %>
+      <div
+        onclick="window.location.href = '/listings/<%=listing._id %>';"
+        class="card col card-index"
+      >
+        <div class="position-relative">
+          <img
+            src="<%= listing.image.url %>"
+            class="card-img-top"
+            alt="<%= listing.image.filename %>"
+            style="height: 20rem"
+          />
+          <div class="card-img-overlay" style="border-radius: 20px"></div>
+        </div>
+        <div class="card-body card-body-index">
+          <p class="card-text"><b><%= listing.title %></b></p>
+          <p class="card-text">
+            &#8377;
+            <span class="price-value" data-baseprice="<%= listing.price %>">
+              <%= (listing.price).toLocaleString("en-IN") %>
+            </span>
+          </p>
+        </div>
+      </div>
+      <% } %>
+    </div>
+  </div>
+  <script>
+    const taxSwitch = document.getElementById("checkNativeSwitch");
+    let isGSTEnabled = false; // Track the GST toggle state manually
+
+    taxSwitch.addEventListener("click", function () {
+      const priceElements = document.querySelectorAll(".price-value");
+
+      isGSTEnabled = !isGSTEnabled;
+
+      for (let i = 0; i < priceElements.length; i++) {
+        const basePrice = parseFloat(priceElements[i].dataset.baseprice);
+
+        if (isGSTEnabled) {
+          // Show GST and taxed price
+          const taxedPrice = (basePrice * 1.18).toFixed(2);
+          priceElements[i].innerText =
+            Number(taxedPrice).toLocaleString("en-IN");
+        } else {
+          // Hide GST and show base price
+          priceElements[i].innerText = basePrice.toLocaleString("en-IN");
+        }
+      }
+    });
+  </script>
+</body>
