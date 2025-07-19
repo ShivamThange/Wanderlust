@@ -98,7 +98,7 @@ app.all("/*catchall", (req, res, next) => {
 
 app.use((err, req, res, next) => {
   let { statusCode = 500, message = "Something went wrong!", stack } = err;
-  res.render("Error.ejs", { message, statusCode, stack });
+  res.render("error.ejs", { message, statusCode, stack });
 });
 
 app.listen(8080, () => {
